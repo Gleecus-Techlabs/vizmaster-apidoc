@@ -49,6 +49,33 @@ paths:
   #         description: Successful response
   #         content:
   #           application/json: {}
+  /services:
+    post:
+      tags:
+        - default
+      summary: scrap&save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /services/cloud_transformation:
+    get:
+      tags:
+        - default
+      summary: get_service
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+
   /api/v1/users/administer/register/:
     post:
       tags:
@@ -797,78 +824,3 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  # /api/user/auth/registration/:
-  #   post:
-  #     tags:
-  #       - default
-  #     summary: User Creation/Registration
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             example:
-  #               email: hajera+4@gleecus.com
-  #               password1: Gleecus123
-  #               password2: Gleecus123
-  #               role_name: DataEngineers
-  #               company: 1
-  #               is_superadmin: false
-  #               is_admin: false
-  #               is_data_engineers: true
-  #               is_data_analysts: false
-  #     responses:
-  #       '200':
-  #         description: Successful response
-  #         content:
-  #           application/json: {}
-  # /users/register/:
-  #   post:
-  #     tags:
-  #       - default
-  #     summary: User Creation/Registration Copy
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             example:
-  #               email: hajera+4@gleecus.com
-  #               password1: Gleecus123
-  #               password2: Gleecus123
-  #               role_name: DataEngineers
-  #               company: 1
-  #               is_superadmin: false
-  #               is_admin: false
-  #               is_data_engineers: true
-  #               is_data_analysts: false
-  #     responses:
-  #       '200':
-  #         description: Successful response
-  #         content:
-  #           application/json: {}
-  # /api/v1/users/register/:
-  #   post:
-  #     tags:
-  #       - default
-  #     summary: Vizmaster User Creation/Registration
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             example:
-  #               email: hajera+5@gleecus.com
-  #               password1: Gleecus123
-  #               password2: Gleecus123
-  #               role_name: DataAnalysts
-  #               company: '1'
-  #               is_data_engineers: false
-  #               is_data_analysts: true
-  #               is_superadmin: false
-  #               is_admin: false
-  #     responses:
-  #       '200':
-  #         description: Successful response
-  #         content:
-  #           application/json: {}
