@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: GenAI-Vizmaster
+  version: 1.0.0
+  contact:
+    name: Gleecus
+    url: https://www.gleecus.com/contact-us/
+    email: hello@gleecus.com
+
+paths:
+  users/login/:
+      post:
+        tags:
+          - User Login
+        summary: User Login
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: hajera+2@gleecus.com
+                  password: Gleecus123
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json: {}
+  users/company/user/login/:
+      post:
+        tags:
+          - User Login
+        summary: Company User Login
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: hajera+1@gleecus.com
+                  password: Gleecus123
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json: {}
+  users/logout/:
+      post:
+        tags:
+          - User Login
+        summary: DEV - User Logout
+        requestBody:
+          content: {}
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: Authorization
+            in: header
+            schema:
+              type: string
+            example: >-
+              Bearer
+              eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MDE5NDY5LCJpYXQiOjE3MjUwMTU4NjksImp0aSI6Ijk0OWJlOGU1YzA4MzQ1ODFiOTczN2YxZjY3NmU5MDJmIiwidXNlcl9pZCI6MTR9.v7hlSgQaFazx25LI02xnpEZVFOil_OewjyQkhJM70qI
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json: {}

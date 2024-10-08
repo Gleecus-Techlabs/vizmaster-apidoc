@@ -1,4 +1,4 @@
-site_name: VizMaster AI API Documentation
+site_name: Vizmaster AI API Documentation
 site_url : https://mydomain.org/mysite
 
 theme:
@@ -12,6 +12,14 @@ plugins:
 
 nav:
   - Home: index.md
+  - Company Register: company-register/company-register.md
+  - Company: company/company.md
+  - Admin Onboard : admin-register/admin-register.md
+  - Admin Users Manage: admin-manage/admin-manage.md
+  - Users : user/user.md
+  - Users Manage: user-manage/user-manage.md
+  - Others: manage-users/manage-users.md
+  - DB Connection : db-connect/db-connect.md
 
 markdown_extensions:
   - pymdownx.details

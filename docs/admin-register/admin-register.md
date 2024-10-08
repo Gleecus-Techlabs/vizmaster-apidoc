@@ -1,0 +1,1 @@
+[OAD(./docs/admin-register/admin-register.yml)]

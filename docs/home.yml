@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: GenAI-Vizmaster
+  version: 1.0.0
+  contact:
+    name: Gleecus
+    url: https://www.gleecus.com/contact-us/
+    email: hello@gleecus.com
+servers:
+  - url: http://localhost:8000
+    description: Local Host 
+  - url: http://{{devurl}}/api/v1/
+    description: Dev URL
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  # - name: Oauth2 Grant Token
+  - name: Admin Onboard
+  - name: Company Register
+  - name: Users
+  - name: Company
+  - name: Users Manage
+  - name: Admin Users Manage
+  - name: DB Connection
+paths:
+  /oauth2/token/:
+    post:
+      tags:
+        - Oauth2 Grant Token
+      summary: Oauth Grant Token
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: 2rKPFJjwhNYbgTyE1XfByWXDy8bozmXQLPgDWxnr
+                client_secret:
+                  type: string
+                  example: >-
+                    mLAWYVAqn3Ov6LA4QhJP9T4BCUOGpHv8Z5XiKbojBkmJEdQsfAd0IqNL9P8t4F4FLod3zJf3J2QUsQ64cdPliJUtEv8wu7tc7NPajEEtvI5bOnecm0EdmJrrmXhsijG0
+                grant_type:
+                  type: string
+                  example: client_credentials

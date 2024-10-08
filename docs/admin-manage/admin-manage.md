@@ -1,0 +1,1 @@
+[OAD(./docs/admin-manage/admin-manage.yml)]

@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: GenAI-Vizmaster
+  version: 1.0.0
+  contact:
+    name: Gleecus
+    url: https://www.gleecus.com/contact-us/
+    email: hello@gleecus.com
+
+paths:
+  users/company/:
+    post:
+      tags:
+        - Company Crud
+      summary: Company Creation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: active
+                name: Glcs-12
+                address: abcd roadno-123
+                phone_number: ''
+                logo: ''
+                slug: glcs-12
+                created_by: superadmin
+                updated_by: superadmin
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Company Crud
+      summary: Get All Companies
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODQxMjc1LCJpYXQiOjE3MjQ4Mzc2NzUsImp0aSI6ImNjODI3MTU5N2FlNTQ0YWE5MzhiNzFlZmRkN2VmZGJiIiwidXNlcl9pZCI6M30.GGhvVRuVmMHc9Jb0zguX_XNpG1XaprTspQv68XGGKdA
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
