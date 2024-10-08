@@ -425,7 +425,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/manage_users/self_update_profile/<user_uid>/:
+  /api/v1/manage_users/self_update_profile/{user_uid}/:
     put:
       tags:
         - User Manage
