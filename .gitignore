@@ -1,0 +1,10 @@
+# Ignore virtual environment folder
+venv/
+
+# Other common ignores
+*.pyc
+__pycache__/
+*.log
+.DS_Store
+node_modules/
+.env

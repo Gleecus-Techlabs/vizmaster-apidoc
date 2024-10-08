@@ -1,0 +1,874 @@
+openapi: 3.0.0
+info:
+  title: GenAI-Vizmaster
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+  - url: http://{{devurl}}api
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Oauth2 Grant Token
+  - name: Administrator Registration
+  - name: Company User Registration
+  - name: User Login
+  - name: Company Crud
+  - name: User Manage
+  - name: Admin User Manage
+  - name: DB Connection
+paths:
+  # /oauth2/token/:
+  #   post:
+  #     tags:
+  #       - Oauth2 Grant Token
+  #     summary: Oauth Grant Token
+  #     requestBody:
+  #       content:
+  #         application/x-www-form-urlencoded:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               client_id:
+  #                 type: string
+  #                 example: 2rKPFJjwhNYbgTyE1XfByWXDy8bozmXQLPgDWxnr
+  #               client_secret:
+  #                 type: string
+  #                 example: >-
+  #                   mLAWYVAqn3Ov6LA4QhJP9T4BCUOGpHv8Z5XiKbojBkmJEdQsfAd0IqNL9P8t4F4FLod3zJf3J2QUsQ64cdPliJUtEv8wu7tc7NPajEEtvI5bOnecm0EdmJrrmXhsijG0
+  #               grant_type:
+  #                 type: string
+  #                 example: client_credentials
+  #     responses:
+  #       '200':
+  #         description: Successful response
+  #         content:
+  #           application/json: {}
+  /api/v1/users/administer/register/:
+    post:
+      tags:
+        - Administrator Registration
+      summary: Vizmaster Admin-User Creation/Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+5@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: Admin
+                username: HajeraAdmin
+                user_type: Administrator
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer IVjqAcn0oLa9LcsXcrlUxmVbAHdTZQ
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/users/administer/register/:
+    post:
+      tags:
+        - Administrator Registration
+      summary: DEV Vizmaster Admin-User Creation/Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: animesh.mondal@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: SuperAdmin
+                username: AnimeshM
+                user_type: Administrator
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer IVjqAcn0oLa9LcsXcrlUxmVbAHdTZQ
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/company/admin/register/:
+    post:
+      tags:
+        - Company User Registration
+      summary: Vizmaster App Admin-User Creation/Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+1@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: AppSuperAdmin
+                username: Hajera1
+                company: Gleecus Tech
+                user_type: Application
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/users/company/admin/register/:
+    post:
+      tags:
+        - Company User Registration
+      summary: DEV- Vizmaster App Admin-User Creation/Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+1@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: AppSuperAdmin
+                username: Hajera1
+                company: Gleecus Techlabs
+                user_type: Application
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/company/user/register/:
+    post:
+      tags:
+        - Company User Registration
+      summary: Vizmaster User Creation/Registration Copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+9@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: DataEngineer
+                company: '1'
+                username: Hajera9
+                user_type: Application
+                first_name: ''
+                last_name: ''
+                profile: ''
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTI3NTg1LCJpYXQiOjE3MjU1MjM5ODUsImp0aSI6ImJjNzEzNmRjNThkMzQxYmZiZTNlMTExNjUyNmE2ZDc4IiwidXNlcl9pZCI6MTR9.Dj0byug07ErDYmNbeVCGTcVhylHSn4fn9SekkNMqox8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/users/company/user/register/:
+    post:
+      tags:
+        - Company User Registration
+      summary: DEV - Vizmaster User Creation/Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+2@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: DataEngineer
+                company: '1'
+                username: Hajera2
+                user_type: Application
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NDUwMDUxLCJpYXQiOjE3MjU0NDY0NTEsImp0aSI6ImY3NGFiZTQyZGM5NDRlZmE4YmZkMzlhYTA3ZjJlMmNlIiwidXNlcl9pZCI6Mn0.1vW6dZS6Iq66Q1K39nZ9_CdiQFBumJMYKH7KMTwkTrc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/login/:
+    post:
+      tags:
+        - User Login
+      summary: User Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+2@gleecus.com
+                password: Gleecus123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/company/user/login/:
+    post:
+      tags:
+        - User Login
+      summary: Company User Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+1@gleecus.com
+                password: Gleecus123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/logout/:
+    post:
+      tags:
+        - User Login
+      summary: DEV - User Logout
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MDE5NDY5LCJpYXQiOjE3MjUwMTU4NjksImp0aSI6Ijk0OWJlOGU1YzA4MzQ1ODFiOTczN2YxZjY3NmU5MDJmIiwidXNlcl9pZCI6MTR9.v7hlSgQaFazx25LI02xnpEZVFOil_OewjyQkhJM70qI
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/users/login/:
+    post:
+      tags:
+        - User Login
+      summary: DEV - User Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+1@gleecus.com
+                password: Gleecus123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/company/:
+    post:
+      tags:
+        - Company Crud
+      summary: Company Creation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: active
+                name: Glcs-12
+                address: abcd roadno-123
+                phone_number: ''
+                logo: ''
+                slug: glcs-12
+                created_by: superadmin
+                updated_by: superadmin
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Company Crud
+      summary: Get All Companies
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODQxMjc1LCJpYXQiOjE3MjQ4Mzc2NzUsImp0aSI6ImNjODI3MTU5N2FlNTQ0YWE5MzhiNzFlZmRkN2VmZGJiIiwidXNlcl9pZCI6M30.GGhvVRuVmMHc9Jb0zguX_XNpG1XaprTspQv68XGGKdA
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/company_user/:
+    post:
+      tags:
+        - User Manage
+      summary: User Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+5@gleecus.com
+                password: Gleecus123
+                role_name: DataEngineers
+                company: '1'
+                is_data_engineers: true
+                is_data_analysts: false
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - User Manage
+      summary: Get All Company User
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTE3MjE1LCJpYXQiOjE3MjU1MTM2MTUsImp0aSI6IjM0M2ZjZDU5NDYyZTRhMjhhY2FjNjYzNzJjYmRiMmU0IiwidXNlcl9pZCI6MTR9.D49XkmXeva4xS4ti1uV48iXuQyUKr__4JX2P9hcMfx0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_company_users/user_update_by_admin/de5b0bab-9eff-4af2-951e-6e41776f7ba6/:
+    put:
+      tags:
+        - Admin User Manage
+      summary: Admin User Update By SuperAdmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+                first_name: Hajera
+                last_name: Nk
+                role_name: DataAnalyst
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                username: Hajera7
+                company_user_uid: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                status: active
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/self_update_profile/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/:
+    put:
+      tags:
+        - User Manage
+      summary: Company User Self Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+                first_name: Hajera
+                last_name: Nkhan
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                username: Hajera7
+                profile: >-
+                  https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin User Manage
+      summary: Admin User Self GET
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_company_users/user_profile_upload/:
+    post:
+      tags:
+        - User Manage
+      summary: Profile Image Upload Company User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_uid:
+                  type: string
+                  example: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                user_profile:
+                  type: string
+                  format: binary
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/auth/password_reset:
+    post:
+      tags:
+        - User Manage
+      summary: Refresh Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/email_test/:
+    post:
+      tags:
+        - User Manage
+      summary: Email sending test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/users_delete_by_admins/f563dbdc-6466-441f-a519-7f10720a63aa:
+    post:
+      tags:
+        - User Manage
+      summary: Delete Company Users By Both Admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_user_uids:
+                  - 2264e2ff-5ffc-4921-b8be-6a81f62aa7d4
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                admin_user_type: Application
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/update_user_status_by_admins/f563dbdc-6466-441f-a519-7f10720a63aa:
+    post:
+      tags:
+        - User Manage
+      summary: Status Update of Company Users By Both Admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_user_uids:
+                  - ae1c6700-13da-4ae9-8842-902b6113e810
+                  - 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                admin_user_type: Application
+                status: active
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/adminstrator/:
+    post:
+      tags:
+        - Admin User Manage
+      summary: Admin Create By SuperAdmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+5@gleecus.com
+                password: Gleecus123
+                role_name: DataEngineers
+                company: '1'
+                is_data_engineers: true
+                is_data_analysts: false
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/self_update_admin_profile/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/:
+    put:
+      tags:
+        - Admin User Manage
+      summary: Admin User Self Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+                first_name: Hajera
+                last_name: Nkhan
+                username: Hajera7
+                profile: >-
+                  https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/manage_users/user_profile_upload/:
+    post:
+      tags:
+        - Admin User Manage
+      summary: Profile Image Upload Admin User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                admin_uid:
+                  type: string
+                  example: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                user_profile:
+                  type: string
+                  format: binary
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/admin_user/:
+    get:
+      tags:
+        - Admin User Manage
+      summary: Get All Admin User
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTE3MjE1LCJpYXQiOjE3MjU1MTM2MTUsImp0aSI6IjM0M2ZjZDU5NDYyZTRhMjhhY2FjNjYzNzJjYmRiMmU0IiwidXNlcl9pZCI6MTR9.D49XkmXeva4xS4ti1uV48iXuQyUKr__4JX2P9hcMfx0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/dbs/connection:
+    get:
+      tags:
+        - DB Connection
+      summary: Get All DbConnection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/dbs/connection/:
+    post:
+      tags:
+        - DB Connection
+      summary: Create DbConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                hostname_ip: localhost
+                port: '5436'
+                db_name: vizdb
+                authentication: ''
+                db_username: vizuser
+                db_paswd: Gleecus123
+                database_type: postgresql
+                created_by: ae1c6700-13da-4ae9-8842-902b6113e810
+                updated_by: ae1c6700-13da-4ae9-8842-902b6113e810
+                company: 1
+                company_user: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/dbs/connector/:
+    post:
+      tags:
+        - DB Connection
+      summary: Create S3-DbConnector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                connector_json:
+                  - aws_secret_key_id: ''
+                    aws_secret_access_key: ''
+                    region_name: ap-south-1
+                    bucket_name: gtl-genai-dbt
+                database_type: s3
+                created_by: ae1c6700-13da-4ae9-8842-902b6113e810
+                updated_by: ae1c6700-13da-4ae9-8842-902b6113e810
+                company: 1
+                company_user: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/dbs/fetch_data_from_datasource/:
+    post:
+      tags:
+        - DB Connection
+      summary: Get/Fetch Data From S3-Datasource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                database_type: s3
+                company_id: 1
+                sql_query: what are the blood types in healthcare data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/dbs/connect_disconnect_datasource/:
+    post:
+      tags:
+        - DB Connection
+      summary: ConnectOrDisconnect Data From Datasource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                database_type: postgresql
+                company_id: 1
+                connection: disconnect
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  # /api/user/auth/registration/:
+  #   post:
+  #     tags:
+  #       - default
+  #     summary: User Creation/Registration
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             example:
+  #               email: hajera+4@gleecus.com
+  #               password1: Gleecus123
+  #               password2: Gleecus123
+  #               role_name: DataEngineers
+  #               company: 1
+  #               is_superadmin: false
+  #               is_admin: false
+  #               is_data_engineers: true
+  #               is_data_analysts: false
+  #     responses:
+  #       '200':
+  #         description: Successful response
+  #         content:
+  #           application/json: {}
+  # /users/register/:
+  #   post:
+  #     tags:
+  #       - default
+  #     summary: User Creation/Registration Copy
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             example:
+  #               email: hajera+4@gleecus.com
+  #               password1: Gleecus123
+  #               password2: Gleecus123
+  #               role_name: DataEngineers
+  #               company: 1
+  #               is_superadmin: false
+  #               is_admin: false
+  #               is_data_engineers: true
+  #               is_data_analysts: false
+  #     responses:
+  #       '200':
+  #         description: Successful response
+  #         content:
+  #           application/json: {}
+  # /api/v1/users/register/:
+  #   post:
+  #     tags:
+  #       - default
+  #     summary: Vizmaster User Creation/Registration
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             example:
+  #               email: hajera+5@gleecus.com
+  #               password1: Gleecus123
+  #               password2: Gleecus123
+  #               role_name: DataAnalysts
+  #               company: '1'
+  #               is_data_engineers: false
+  #               is_data_analysts: true
+  #               is_superadmin: false
+  #               is_admin: false
+  #     responses:
+  #       '200':
+  #         description: Successful response
+  #         content:
+  #           application/json: {}
