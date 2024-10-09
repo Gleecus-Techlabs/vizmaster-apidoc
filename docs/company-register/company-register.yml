@@ -1,11 +1,8 @@
 openapi: 3.0.0
 info:
-  title: GenAI-Vizmaster
+  title: Vizmaster AI
   version: 1.0.0
-  contact:
-    name: Gleecus
-    url: https://www.gleecus.com/contact-us/
-    email: hello@gleecus.com
+
 
 paths:
   users/company/admin/register/:

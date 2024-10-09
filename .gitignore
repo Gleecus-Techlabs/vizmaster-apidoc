@@ -1,5 +1,6 @@
 # Ignore virtual environment folder
 venv/
+docs/example/
 
 # Other common ignores
 *.pyc

@@ -1,33 +1,49 @@
 openapi: 3.0.0
 info:
-  title: GenAI-Vizmaster
+  title: Vizmaster AI
   version: 1.0.0
-  contact:
-    name: Gleecus
-    url: https://www.gleecus.com/contact-us/
-    email: hello@gleecus.com
-servers:
-  - url: http://localhost:8000
-    description: Local Host 
-  - url: http://{{devurl}}/api/v1/
-    description: Dev URL
-components:
-  securitySchemes:
-    noauthAuth:
-      type: http
-      scheme: noauth
-    bearerAuth:
-      type: http
-      scheme: bearer
-tags:
-  # - name: Oauth2 Grant Token
-  - name: Admin Onboard
-  - name: Company Register
-  - name: Users
-  - name: Company
-  - name: Users Manage
-  - name: Admin Users Manage
-  - name: DB Connection
+  description: |
+   Welcome to the API documentation for Vizmaster AI. This documentation provides comprehensive details about the various endpoints available in our application, including the authentication mechanisms, data formats, and error handling protocols. You will also find example requests and responses for easier integration with our API.
+
+   This document is designed to help developers understand how to interact with our system, and it outlines key concepts such as authentication schemes, supported HTTP methods, and response codes. For any additional support or clarification, please refer to external resources.
+
+   ## URL
+   ```
+   https://{{server_url}}/api/{{version}}/endpoint
+   ```
+
+   ## Server URL
+    | Name          | URL                                           |
+    |---------------|------------------------------------------|
+    | Local Host     | ```localhost:8000```       |
+    | Development URL|```https://vizmaster-api.gleecustechlabs.com/```|
+    | Production URL |   Yet to be done   |
+
+   ## Version
+    |     Name     |  Version Code                              |
+    |---------------|------------------------------------------|
+    | Version 1     |   ```v1```      |
+    
+
+# components:
+#   securitySchemes:
+#     noauthAuth:
+#       type: http
+#       scheme: noauth
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+# tags:
+#   # - name: Oauth2 Grant Token
+#   - name: Admin Onboard
+#     description: Admin Register
+#   - name: Company Register
+#   - name: Users
+#   - name: Company
+#   - name: Users Manage
+#   - name: Admin Users Manage
+#   - name: DB Connection
+
 paths:
   /oauth2/token/:
     post:
