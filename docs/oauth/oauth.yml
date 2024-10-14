@@ -2,6 +2,8 @@ openapi: 3.0.0
 info:
   title: Vizmaster AI
   version: 1.0.0
+  description: |
+    <p style="color: red;"> 🚩 This API is currently under development and may not be fully functional.</p>
 
 paths:  
   /oauth2/token/:
@@ -9,6 +11,24 @@ paths:
         tags:
           - Oauth2 Grant Token
         summary: Oauth Grant Token
+
+        parameters:
+        - name: client_id
+          in: body
+          schema:
+            type: string
+          description: Client ID from <br> the OAuth provider
+        - name: client_secret
+          in: body
+          schema:
+            type: string
+          description: Client secret from <br> the OAuth provider
+        - name: grant_type
+          in: body
+          scheme:
+            type: None
+          description: Type of OAuth grant <br> [Eg:-  client_credentials, <br> authorization_code]
+
         requestBody:
           content:
             application/x-www-form-urlencoded:

@@ -15,17 +15,17 @@ plugins:
 nav:
   - Home: index.md
   - Company Management:
-    - Company Onboard: company/company.md
-    - Company User Management: company-register/company-register.md
+    - Onboard: company/company.md
+    - User Management: company-register/company-register.md
   - Admin Management:
-    - Admin Onboard : admin-register/admin-register.md
-    - Super Admin, Admin Manage: admin-manage/admin-manage.md
+    - Onboard : admin-register/admin-register.md
+    - Management : admin-manage/admin-manage.md
   - User Management:
     - Users : user/user.md
     - Users Manage: user-manage/user-manage.md
   - DB Connection : db-connect/db-connect.md
   - OAuth : oauth/oauth.md
-  # - example: example/example.md
+  - example: example/example.md 
 
 markdown_extensions:
   - pymdownx.details

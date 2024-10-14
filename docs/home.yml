@@ -3,11 +3,11 @@ info:
   title: Vizmaster AI
   version: 1.0.0
   description: |
-   Welcome to the API documentation for Vizmaster AI. This documentation provides comprehensive details about the various endpoints available in our application, including the authentication mechanisms, data formats, and error handling protocols. You will also find example requests and responses for easier integration with our API.
+   Welcome to the API documentation for Vizmaster AI. This documentation provides comprehensive details about various endpoints available in the application, including authentication mechanisms, data formats, and error handling protocols. You will also find example requests and responses for easier integration with the API.
 
-   This document is designed to help developers understand how to interact with our system, and it outlines key concepts such as authentication schemes, supported HTTP methods, and response codes. For any additional support or clarification, please refer to external resources.
+   This document is designed to help developers understand how to interact with the system, and outlines key concepts such as authentication schemes, supported HTTP methods, and response codes. For any additional support or clarification, please send out an [email](mailto:zilla.deepak@gleecus.com)
 
-   ## URL
+   ## URL Schema
    ```
    https://{{server_url}}/api/{{version}}/endpoint
    ```
@@ -16,7 +16,7 @@ info:
     | Name          | URL                                           |
     |---------------|------------------------------------------|
     | Local Host     | ```localhost:8000```       |
-    | Development URL|```https://vizmaster-api.gleecustechlabs.com/```|
+    | Development URL|```vizmaster-api.gleecustechlabs.com```|
     | Production URL |   Yet to be done   |
 
    ## Version
@@ -30,6 +30,7 @@ info:
 #     noauthAuth:
 #       type: http
 #       scheme: noauth
+#       description: No authentication requ<br>ired for access
 #     bearerAuth:
 #       type: http
 #       scheme: bearer
