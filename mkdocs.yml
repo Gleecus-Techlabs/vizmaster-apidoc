@@ -25,7 +25,7 @@ nav:
     - Users Manage: user-manage/user-manage.md
   - DB Connection : db-connect/db-connect.md
   - OAuth : oauth/oauth.md
-  - example: example/example.md 
+  # - example: example/example.md
 
 markdown_extensions:
   - pymdownx.details
