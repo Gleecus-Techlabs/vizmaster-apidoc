@@ -1,0 +1,333 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+
+paths:
+  users/company/admin/register/:
+    post:
+      tags:
+        - Company Admin & User Registration
+      summary: Company Admin creation/registration
+
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Authorization Token
+        - name: email
+          in: body
+          schema:
+            type: string
+          description: User Email address
+        - name: password1
+          in: body
+          schema:
+            type: string
+          description: Set Password
+        - name: password2
+          in: body
+          schema:
+            type: string  
+          description: Confirm Password              
+        - name: role_name
+          in: body
+          schema:
+            type: string 
+          description: User Role <br> [AppSuperAdmin]
+        - name: username
+          in: body
+          schema:
+            type: string
+          description: User name
+        - name: company
+          in: body
+          schema:
+            type: string
+          description: Company name
+        - name: user_type
+          in: body
+          schema:
+            type: string
+          description: Type of User <br>[Application]
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+1@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: AppSuperAdmin
+                username: Hajera1
+                company: Gleecus Tech
+                user_type: Application
+
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI4ODkwNzM4LCJpYXQiOjE3Mjg4ODcxMzgsImp0aSI6IjQ1MWU0ZWQ1MGRmZDRiOWI5MjYxYzU0YWQ1MzYyYzc3IiwidXNlcl9pZCI6NX0.Y7UzBH1XhCLar0MoFaLnIsUmXrs4t4RttQNukJT2OBw"
+                  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyODk3MzUzOCwiaWF0IjoxNzI4ODg3MTM4LCJqdGkiOiJiMjQ0ODYwZWQ4MTQ0Y2IwOWJmM2ZlYjlkNzM1MDhkZCIsInVzZXJfaWQiOjV9.jcP5RjdnnUFNNvpHEt8v8Te6WW5Sw7aum471-_v05dc"
+                  "user": 
+                    "id": 5
+                    "email": "hajera+1@gleecus.com"
+                    "role_name": "AppSuperAdmin"
+                    "status": "active"
+                    "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                    "user_type": "Application"
+                    "username": "Hajera1"
+                    "company": []
+                    "user_data": []
+                  "user_details": 
+                    "id": 1
+                    "company_details": 
+                      "id": 2
+                      "status": "active"
+                      "uuid": "d6866dbc-2581-4dab-a240-24f52ea1cb41"
+                      "name": "Gleecus Tech"
+                      "address": null
+                      "phone_number": null
+                      "logo" : null
+                      "slug": "gleecus-tech"
+                      "created_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                      "updated_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                      "created_at": "2024-10-14T06:25:38.388172Z"
+                      "updated_at": "2024-10-14T06:25:38.388172Z"
+                    "user_auth": 
+                      "id": 5
+                      "email": "hajera+1@gleecus.com"
+                      "role_name": "AppSuperAdmin"
+                      "status": "active"
+                      "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                      "user_type": "Application"
+                      "username": "Hajera1"
+                      "is_active": true
+                    "uuid": "d50c8f9e-f6c6-46ac-a634-a5550bb02db0"
+                    "username": "Hajera1"
+                    "first_name": null
+                    "last_name": null
+                    "role_name": "AppSuperAdmin"
+                    "profile": null
+                    "phone_number": null
+                    "created_at": "2024-10-14T06:25:38.396161Z"
+                    "updated_at": "2024-10-14T06:25:38.396161Z"
+                    "created_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                    "updated_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                    "created_by_group": "Administrator"
+                    "updated_by_group": "Administrator"
+                    "user": 5
+                    "company": 2
+        
+        '400':
+          description: Bad Request
+          content:
+
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Data doesn't exist"
+                  "data": "{'{field_name}[username or email]': [ErrorDetail(string='A user with that {field_name} already exists.', code='{field_name}_taken')]}"
+              example:
+                "message": "Data doesn't exist"
+                "data": "{'username': [ErrorDetail(string='A user with that username already exists.', code='username_taken')]}"
+
+            text/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Company with this Name already exists." 
+
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."
+
+
+  users/company/user/register/:
+    post:
+      tags:
+        - Company Admin & User Registration
+      summary: Company User creation/registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+9@gleecus.com
+                password1: Gleecus123
+                password2: Gleecus123
+                role_name: DataEngineer
+                company: '1'
+                username: Hajera9
+                user_type: Application
+                first_name: ''
+                last_name: ''
+                profile: ''
+      
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Authorization token
+        - name: email
+          in: body
+          schema:
+            type: string
+          description: User email address
+        - name: password1
+          in: body
+          schema:
+            type: string
+          description: Set password
+        - name: password2
+          in: body
+          schema:
+            type: string  
+          description: Confirm password              
+        - name: role_name
+          in: body
+          schema:
+            type: string 
+          description: User role in company <br> [Eg:- Data Analyst, <br> Frontend Developer]
+        - name: username
+          in: body
+          schema:
+            type: string
+          description: User name
+        - name: company
+          in: body
+          schema:
+            type: string
+          description: Company ID
+        - name: user_type
+          in: body
+          schema:
+            type: string
+          description: Type of user <br>[Application]
+        - name: first_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User first name
+        - name: last_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User last name
+        - name: profile
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: Profile name
+
+
+      responses:
+        '201':
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                example: 
+                  "message": "User account created."
+        
+        '400':
+          description: Bad Request
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Data doesn't exist"
+                  "data": "{'{field_name}[username or email]': [ErrorDetail(string='A user with that {field_name} already exists.', code='{field_name}_taken')]}"
+              example:
+                "message": "Data doesn't exist"
+                "data": "{'username': [ErrorDetail(string='A user with that username already exists.', code='username_taken')]}"
+
+            text/json:
+              schema:
+                type: object
+                example: 
+                  "message": "Error while creating User."
+                  "data": "duplicate key value violates unique constraint \"users_email_key\"\nDETAIL:  Key (email)=(hajera+9@gleecus.com) already exists.\n"
+        
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."

@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+
+paths:
+  users/company_user/:
+    post:
+      tags:
+        - User Manage
+      summary: User Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+5@gleecus.com
+                password: Gleecus123
+                role_name: DataEngineers
+                company: '1'
+                is_data_engineers: true
+                is_data_analysts: false
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - User Manage
+      summary: Get All Company User
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTE3MjE1LCJpYXQiOjE3MjU1MTM2MTUsImp0aSI6IjM0M2ZjZDU5NDYyZTRhMjhhY2FjNjYzNzJjYmRiMmU0IiwidXNlcl9pZCI6MTR9.D49XkmXeva4xS4ti1uV48iXuQyUKr__4JX2P9hcMfx0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  manage_company_users/user_profile_upload/:
+    post:
+      tags:
+        - User Manage
+      summary: Profile Image Upload Company User
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_uid:
+                  type: string
+                  example: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                user_profile:
+                  type: string
+                  format: binary
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  users/auth/password_reset:
+    post:
+      tags:
+        - User Manage
+      summary: Refresh Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  manage_users/email_test/:
+    post:
+      tags:
+        - User Manage
+      summary: Email sending test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  manage_users/users_delete_by_admins/f563dbdc-6466-441f-a519-7f10720a63aa:
+    post:
+      tags:
+        - User Manage
+      summary: Delete Company Users By Both Admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_user_uids:
+                  - 2264e2ff-5ffc-4921-b8be-6a81f62aa7d4
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                admin_user_type: Application
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  manage_users/update_user_status_by_admins/f563dbdc-6466-441f-a519-7f10720a63aa:
+    post:
+      tags:
+        - User Manage
+      summary: Status Update of Company Users By Both Admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_user_uids:
+                  - ae1c6700-13da-4ae9-8842-902b6113e810
+                  - 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                admin_user_type: Application
+                status: active
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  manage_users/self_update_profile/{user_uid}/:
+    put:
+      tags:
+        - User Manage
+      summary: Company User Self Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: hajera+7@gleecus.com
+                first_name: Hajera
+                last_name: Nkhan
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                username: Hajera7
+                profile: >-
+                  https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin User Manage
+      summary: Admin User Self GET
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

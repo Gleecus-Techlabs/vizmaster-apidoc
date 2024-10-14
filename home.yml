@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+  description: |
+   Welcome to the API documentation for Vizmaster AI. This documentation provides comprehensive details about various endpoints available in the application, including authentication mechanisms, data formats, and error handling protocols. You will also find example requests and responses for easier integration with the API.
+
+   This document is designed to help developers understand how to interact with the system, and outlines key concepts such as authentication schemes, supported HTTP methods, and response codes. For any additional support or clarification, please send out an [email](mailto:zilla.deepak@gleecus.com)
+
+   ## URL Schema
+   ```
+   https://{{server_url}}/api/{{version}}/endpoint
+   ```
+
+   ## Server URL
+    | Name          | URL                                           |
+    |---------------|------------------------------------------|
+    | Local Host     | ```localhost:8000```       |
+    | Development URL|```vizmaster-api.gleecustechlabs.com```|
+    | Production URL |   Yet to be done   |
+
+   ## Version
+    |     Name     |  Version Code                              |
+    |---------------|------------------------------------------|
+    | Version 1     |   ```v1```      |
+    
+
+# components:
+#   securitySchemes:
+#     noauthAuth:
+#       type: http
+#       scheme: noauth
+#       description: No authentication requ<br>ired for access
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+# tags:
+#   # - name: Oauth2 Grant Token
+#   - name: Admin Onboard
+#     description: Admin Register
+#   - name: Company Register
+#   - name: Users
+#   - name: Company
+#   - name: Users Manage
+#   - name: Admin Users Manage
+#   - name: DB Connection
+
+paths:
+  /oauth2/token/:
+    post:
+      tags:
+        - Oauth2 Grant Token
+      summary: Oauth Grant Token
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  example: 2rKPFJjwhNYbgTyE1XfByWXDy8bozmXQLPgDWxnr
+                client_secret:
+                  type: string
+                  example: >-
+                    mLAWYVAqn3Ov6LA4QhJP9T4BCUOGpHv8Z5XiKbojBkmJEdQsfAd0IqNL9P8t4F4FLod3zJf3J2QUsQ64cdPliJUtEv8wu7tc7NPajEEtvI5bOnecm0EdmJrrmXhsijG0
+                grant_type:
+                  type: string
+                  example: client_credentials
