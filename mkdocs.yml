@@ -14,12 +14,12 @@ plugins:
 
 nav:
   - Home: index.md
-  - Company Management:
-    - Onboard: company/company.md
-    - User Management: company-register/company-register.md
   - Admin Management:
     - Onboard : admin-register/admin-register.md
     - Management : admin-manage/admin-manage.md
+  - Company Management:
+    - Onboard: company/company.md
+    - User Management: company-register/company-register.md
   - User Management:
     - Users : user/user.md
     - Users Manage: user-manage/user-manage.md
@@ -36,3 +36,4 @@ markdown_extensions:
 extra_css:
   - css/mkdocsoad.css
 
+# For custom localhost mkdocs serve --dev-addr=127.0.0.1:5000

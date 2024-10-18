@@ -2,7 +2,8 @@ openapi: 3.0.0
 info:
   title: Vizmaster AI
   version: 1.0.0
- 
+  description: |
+    <p style="color: red;"> 🚩 This Section APIs are not finalized and may not be fully functional.</p>
 
 paths:
   dbs/connection:

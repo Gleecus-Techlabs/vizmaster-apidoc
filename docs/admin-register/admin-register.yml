@@ -105,6 +105,7 @@ paths:
                     "updated_by": "3d80fa48-3f9c-4109-83c2-023257a7994d"
                     "user": 47
         
+        #401, 403 are pending
         '400':
           description: Bad Request
           content:

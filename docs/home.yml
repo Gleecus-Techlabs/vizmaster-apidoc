@@ -46,24 +46,42 @@ info:
 #   - name: DB Connection
 
 paths:
-  /oauth2/token/:
-    post:
+  /admin/:
+    get:
       tags:
-        - Oauth2 Grant Token
-      summary: Oauth Grant Token
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                client_id:
-                  type: string
-                  example: 2rKPFJjwhNYbgTyE1XfByWXDy8bozmXQLPgDWxnr
-                client_secret:
-                  type: string
-                  example: >-
-                    mLAWYVAqn3Ov6LA4QhJP9T4BCUOGpHv8Z5XiKbojBkmJEdQsfAd0IqNL9P8t4F4FLod3zJf3J2QUsQ64cdPliJUtEv8wu7tc7NPajEEtvI5bOnecm0EdmJrrmXhsijG0
-                grant_type:
-                  type: string
-                  example: client_credentials
+        - Admin
+      summary: Django Admin Page
+      description: Retrieves the Django admin page.
+      responses:
+        '200':
+          description: Successful response, returns the HTML content for the admin page.
+          content:
+            text/html:
+              schema:
+                type: string
+                example: | 
+                  <!DOCTYPE html>
+                  <html lang="en-us">
+                    <head>
+                      <title>Log in | Django site admin</title>
+                    </head>
+                    <body>
+                      <form>
+                        <label for="id_username">Username:</label>
+                        <input type="text" name="username" required id="id_username">
+                        <label for="id_password">Password:</label>
+                        <input type="password" name="password" required id="id_password">
+                        <button>Login</button>
+                      </form>
+                    </body>
+                  </html>
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+

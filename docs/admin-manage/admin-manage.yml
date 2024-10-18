@@ -5,7 +5,7 @@ info:
 
 
 paths:
-  manage_company_users/user_update_by_admin/de5b0bab-9eff-4af2-951e-6e41776f7ba6/:
+  manage_users/user_update_by_admin/:
     put:
       tags:
         - Admin User Manage
@@ -16,24 +16,74 @@ paths:
             schema:
               type: object
               example:
-                email: hajera+7@gleecus.com
+                admin_uid: d397a43b-be59-44bb-9d33-e0bb81c8592e
+                email: hajera+1@gleecus.com
                 first_name: Hajera
                 last_name: Nk
                 role_name: DataAnalyst
                 company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
-                username: Hajera7
+                username: Hajera1
                 company_user_uid: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
                 status: active
-      security:
-        - noauthAuth: []
+                user_type: Application
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+          description: Authorization Token
+        - name: email
+          in: body
+          schema:
+            type: string
+          description: User Email address
+        - name: first_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User First name
+        - name: last_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User Last name
+        - name: role_name
+          in: body
+          schema:
+            type: string
+          description: User role in company <br> [Eg:- Data Analyst]
+        - name: username
+          in: body
+          schema:
+            type: string
+          description: Username
+        - name: status
+          in: body
+          schema:
+            type: string
+          description: User status <br> active/inactive
+        - name: company_user_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of Company <br> user whose data <br> should be updated
+        - name: company_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of User company
+        - name: admin_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of admin <br> performing the <br> update
+        - name: user_type
+          in: body
+          schema:
+            type: string
+          description: Type of user <br>[Application]<br>[Administrator]
       responses:
         '200':
           description: Successful response
@@ -137,17 +187,66 @@ paths:
     get:
       tags:
         - Admin User Manage
-      summary: Get All Admin User
+      summary: Get all Admin users
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTE3MjE1LCJpYXQiOjE3MjU1MTM2MTUsImp0aSI6IjM0M2ZjZDU5NDYyZTRhMjhhY2FjNjYzNzJjYmRiMmU0IiwidXNlcl9pZCI6MTR9.D49XkmXeva4xS4ti1uV48iXuQyUKr__4JX2P9hcMfx0
       responses:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "id": 2
+                  "user_auth": 
+                    "id": 4
+                    "email": "hajera+5@gleecus.com"
+                    "role_name": "Admin"
+                    "status": "active"
+                    "uuid": "0181d85c-3506-468b-b94b-90413689beb3"
+                    "user_type": "Administrator"
+                    "username": "HajeraAdmin"
+                    "is_active": true
+                  "uuid": "6e49143b-0daf-4e9c-bc84-cb515110dd37"
+                  "username": "HajeraAdmin"
+                  "first_name": null
+                  "last_name": null
+                  "role_name": "Admin"
+                  "profile": null
+                  "phone_number": null
+                  "created_at": "2024-10-10T06:23:39.256895Z"
+                  "updated_at": "2024-10-10T06:23:39.256895Z"
+                  "created_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                  "updated_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                  "user": 4
+        
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+        
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
