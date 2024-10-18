@@ -1,0 +1,289 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+
+
+paths:
+  users/login/:
+      post:
+        tags:
+          - User Login
+        summary: User Login
+        parameters:
+          - name: email
+            in: body
+            schema:
+              type: string
+            description: User Email address
+          - name: password
+            in: body
+            schema:
+              type: string
+            description: User Password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: hajera+1@gleecus.com
+                  password: Gleecus123
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5MDYzNTcyLCJpYXQiOjE3MjkwNTk5NzIsImp0aSI6ImFmMWE3OWM2MGEyMzQwZDU5YzMxY2Q1YTIyZDVkMzVhIiwidXNlcl9pZCI6NX0.7TWxB7X03ewL3Mc6KJEiENKxNfPmCAQsarw22DATsa0"
+                    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyOTE0NjM3MiwiaWF0IjoxNzI5MDU5OTcyLCJqdGkiOiIwZDU0MTY2NTliMzA0OGZkYTI5ODIzZThhODIzNDBmZSIsInVzZXJfaWQiOjV9.bvctFM87SLaZUyy6kMuJ607wIx5tIjSbr8hrHV5DN2k"
+                    "user": 
+                      "id": 5
+                      "email": "hajera+1@gleecus.com"
+                      "role_name": "AppSuperAdmin"
+                      "status": "active"
+                      "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                      "user_type": "Application"
+                      "username": "Hajera1"
+                      "company": 
+                        "id": 2
+                        "status": "active"
+                        "uuid": "d6866dbc-2581-4dab-a240-24f52ea1cb41"
+                        "name": "Gleecus Tech"
+                        "address": null
+                        "phone_number": null
+                        "logo": null
+                        "slug": "gleecus-tech"
+                        "created_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                        "updated_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                        "created_at": "2024-10-14T06:25:38.388172Z"
+                        "updated_at": "2024-10-14T06:25:38.388172Z"
+                      "user_data": 
+                        "id": 1
+                        "company_details": 
+                          "id": 2
+                          "status": "active"
+                          "uuid": "d6866dbc-2581-4dab-a240-24f52ea1cb41"
+                          "name": "Gleecus Tech"
+                          "address": null
+                          "phone_number": null
+                          "logo": null
+                          "slug": "gleecus-tech"
+                          "created_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "updated_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "created_at": "2024-10-14T06:25:38.388172Z"
+                          "updated_at": "2024-10-14T06:25:38.388172Z"
+                        "user_auth": 
+                          "id": 5
+                          "email": "hajera+1@gleecus.com"
+                          "role_name": "AppSuperAdmin"
+                          "status": "active"
+                          "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "user_type": "Application"
+                          "username": "Hajera1"
+                          "is_active": true
+                        "uuid": "d50c8f9e-f6c6-46ac-a634-a5550bb02db0"
+                        "username": "Hajera1"
+                        "first_name": null
+                        "last_name": null
+                        "role_name": "AppSuperAdmin"
+                        "profile": null
+                        "phone_number": null
+                        "created_at": "2024-10-14T06:25:38.396161Z"
+                        "updated_at": "2024-10-14T06:25:38.396161Z"
+                        "created_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                        "updated_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                        "created_by_group": "Administrator"
+                        "updated_by_group": "Administrator"
+                        "user": 5
+                        "company": 2
+            
+          '400': 
+            description: Wrong credentials
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example: 
+                    "non_field_errors": "Unable to log in with provided credentials."
+          
+          '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Resource not found"
+          
+          '405':
+            description: Method not allwoed
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Method \"GET\" not allowed."
+
+  users/company/user/login/:
+      post:
+        tags:
+          - User Login
+        summary: Company User Login
+        parameters:
+          - name: email
+            in: body
+            schema:
+              type: string
+            description: Company user email address
+          - name: password
+            in: body
+            schema:
+              type: string
+            description: Company user password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: hajera+1@gleecus.com
+                  password: Gleecus123
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5MDYzNTcyLCJpYXQiOjE3MjkwNTk5NzIsImp0aSI6ImFmMWE3OWM2MGEyMzQwZDU5YzMxY2Q1YTIyZDVkMzVhIiwidXNlcl9pZCI6NX0.7TWxB7X03ewL3Mc6KJEiENKxNfPmCAQsarw22DATsa0"
+                    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyOTE0NjM3MiwiaWF0IjoxNzI5MDU5OTcyLCJqdGkiOiIwZDU0MTY2NTliMzA0OGZkYTI5ODIzZThhODIzNDBmZSIsInVzZXJfaWQiOjV9.bvctFM87SLaZUyy6kMuJ607wIx5tIjSbr8hrHV5DN2k"
+                    "user": 
+                      "id": 5
+                      "email": "hajera+1@gleecus.com"
+                      "role_name": "AppSuperAdmin"
+                      "status": "active"
+                      "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                      "user_type": "Application"
+                      "username": "Hajera1"
+                      "company": 
+                        "id": 2
+                        "status": "active"
+                        "uuid": "d6866dbc-2581-4dab-a240-24f52ea1cb41"
+                        "name": "Gleecus Tech"
+                        "address": null
+                        "phone_number": null
+                        "logo": null
+                        "slug": "gleecus-tech"
+                        "created_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                        "updated_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                        "created_at": "2024-10-14T06:25:38.388172Z"
+                        "updated_at": "2024-10-14T06:25:38.388172Z"
+                      "user_data": 
+                        "id": 1
+                        "company_details": 
+                          "id": 2
+                          "status": "active"
+                          "uuid": "d6866dbc-2581-4dab-a240-24f52ea1cb41"
+                          "name": "Gleecus Tech"
+                          "address": null
+                          "phone_number": null
+                          "logo": null
+                          "slug": "gleecus-tech"
+                          "created_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "updated_by": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "created_at": "2024-10-14T06:25:38.388172Z"
+                          "updated_at": "2024-10-14T06:25:38.388172Z"
+                        "user_auth": 
+                          "id": 5
+                          "email": "hajera+1@gleecus.com"
+                          "role_name": "AppSuperAdmin"
+                          "status": "active"
+                          "uuid": "7b34c33e-e4f4-4856-8f1d-0ee40e153d1e"
+                          "user_type": "Application"
+                          "username": "Hajera1"
+                          "is_active": true
+                        "uuid": "d50c8f9e-f6c6-46ac-a634-a5550bb02db0"
+                        "username": "Hajera1"
+                        "first_name": null
+                        "last_name": null
+                        "role_name": "AppSuperAdmin"
+                        "profile": null
+                        "phone_number": null
+                        "created_at": "2024-10-14T06:25:38.396161Z"
+                        "updated_at": "2024-10-14T06:25:38.396161Z"
+                        "created_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                        "updated_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                        "created_by_group": "Administrator"
+                        "updated_by_group": "Administrator"
+                        "user": 5
+                        "company": 2
+            
+          '400': 
+            description: Wrong credentials
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example: 
+                    "non_field_errors": "Unable to log in with provided credentials."
+          
+          '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Resource not found"
+          
+          '405':
+            description: Method not allwoed
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Method \"GET\" not allowed."          
+
+  users/logout/:
+      post:
+        tags:
+          - User Logout
+        summary: User Logout
+        parameters:
+          - name: Authorization
+            in: header
+            schema:
+              type: string
+            description: Authorization Token
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema: 
+                  type: object
+                  example:
+                    "message": "Successfully logged out."
+          
+          '404':        
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Resource not found"
+            
+          '405':
+            description: Method not allwoed
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Method \"GET\" not allowed."

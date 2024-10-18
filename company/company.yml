@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+
+paths:
+  users/company/:
+    post:
+      tags:
+        - Company Onboard
+      summary: Company creation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: active
+                name: Glcs 12
+                address: abcd roadno-123
+                phone_number: ''
+                logo: ''
+                slug: glcs-12
+                created_by: superadmin
+                updated_by: superadmin
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+          description: Authorization Token
+        - name: status
+          in: body
+          schema:
+            type: string
+            default: active
+          description: Company status <br> active/inactive
+        - name: name
+          in: body
+          schema:
+            type: string
+          description: Company Name
+        - name: address
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: Company Address
+        - name: phone_number
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: Company Contact
+        - name: logo
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: Company Logo
+        - name: slug
+          in: body
+          schema:
+            type: string
+          description: Company name in <br> URL version
+        - name: created_by
+          in: body
+          schema:
+            type: string
+          description: UUID of creator
+        - name: updated_by
+          in: body
+          schema:
+            type: string
+          description: UUID of updater
+
+      responses:
+        '201':
+          # description: Successful response
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Company created Successfully"
+                  "data": 
+                    "id": 1
+                    "status": "active"
+                    "uuid": "ea1fe724-c4e8-4078-b137-b1132ab02ae9"
+                    "name": "Glcs 12"
+                    "address": "abcd roadno-123"
+                    "phone_number": ""
+                    "logo": ""  
+                    "slug": "glcs-12"
+                    "created_by": "659a7ec6-9a1f-40c2-8d22-65b25da31797"
+                    "updated_by": "659a7ec6-9a1f-40c2-8d22-65b25da31797"
+                    "created_at": "2024-10-10T07:24:59.761469Z"
+                    "updated_at": "2024-10-10T07:24:59.761469Z"
+        
+        '400':
+          description: Bad Request
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Company with this Name already exists."
+
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."
+    
+    get:
+      tags:
+        - Company Onboard
+      summary: Get all companies from database
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Authorization Token
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "id": 1
+                  "status": "active"
+                  "uuid": "ea1fe724-c4e8-4078-b137-b1132ab02ae9"
+                  "name": "Glcs-12"
+                  "address": "abcd roadno-123"
+                  "phone_number": ""
+                  "logo": ""
+                  "slug": "glcs-12"
+                  "created_by": "659a7ec6-9a1f-40c2-8d22-65b25da31797"
+                  "updated_by": "659a7ec6-9a1f-40c2-8d22-65b25da31797"
+                  "created_at": "2024-10-10T07:24:59.761469Z"
+                  "updated_at": "2024-10-10T07:24:59.761469Z"
+        
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+        
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
