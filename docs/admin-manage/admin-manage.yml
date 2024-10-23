@@ -5,141 +5,6 @@ info:
 
 
 paths:
-  manage_users/user_update_by_admin/:
-    put:
-      tags:
-        - Admin Users Manage
-      summary: Admin User Update By SuperAdmin
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                admin_uid: d397a43b-be59-44bb-9d33-e0bb81c8592e
-                email: hajera+1@gleecus.com
-                first_name: Hajera
-                last_name: Nk
-                role_name: DataAnalyst
-                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
-                username: Hajera1
-                company_user_uid: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
-                status: active
-                user_type: Application
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          description: Authorization Token
-        - name: email
-          in: body
-          schema:
-            type: string
-          description: User Email address
-        - name: first_name
-          in: body
-          schema:
-            type: string
-            nullable: true
-          description: User First name
-        - name: last_name
-          in: body
-          schema:
-            type: string
-            nullable: true
-          description: User Last name
-        - name: role_name
-          in: body
-          schema:
-            type: string
-          description: User role in company <br> [Eg:- Data Analyst]
-        - name: username
-          in: body
-          schema:
-            type: string
-          description: Username
-        - name: status
-          in: body
-          schema:
-            type: string
-          description: User status <br> active/inactive
-        - name: company_user_uid
-          in: body
-          schema:
-            type: string
-          description: UUID of Company <br> user whose data <br> should be updated
-        - name: company_uid
-          in: body
-          schema:
-            type: string
-          description: UUID of User company
-        - name: admin_uid
-          in: body
-          schema:
-            type: string
-          description: UUID of admin <br> performing the <br> update
-        - name: user_type
-          in: body
-          schema:
-            type: string
-          description: Type of user <br>[Application]<br>[Administrator]
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: 
-              schema:
-                type: object
-                example:
-                  message: "User details updated."
-       
-        '400':
-          description: Wrong credentials
-          content:
-            application/json: 
-              schema:
-                type: object
-                example:
-                  message: "User with given updated_by-cfeb3f7f-0a57-42e2-9340-c028cd151652 doesnot exists!"
-
-        '401':
-          description: UnAuthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  "message": "Authentication credentials were not provided."
-
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  "message": "You do not have permission to perform this action."
-        
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  "message": "Resource not found"
-
-        '405':
-          description: Method not allwoed
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  "message": "Method \"GET\" not allowed."
-
-
   users/admin_user/:
     get:
       tags:
@@ -212,7 +77,7 @@ paths:
     put:
       tags:
         - Admin Users Manage
-      summary: Admin User Self Update
+      summary: Admin user self update
       requestBody:
         content:
           application/json:
@@ -309,9 +174,7 @@ paths:
                 schema:
                   type: object
                   example:
-                    data:
-                      "detail": 
-                          "message": "Fields should not be empty"
+                    "message": "Fields should not be empty"
 
         '401':
             description: Not Found
@@ -320,9 +183,8 @@ paths:
                 schema:
                   type: object
                   example:
-                    "message": "Resource not found"
-                    data:
-                      "detail": "Authentication credentials were not provided."
+                    "message": "Authentication credentials were not provided."
+
         '403':
           description: Forbidden
           content:
@@ -348,41 +210,115 @@ paths:
               schema:
                 type: object
                 example:
-                  "message": 
-                    "detail": "Method \"POST\" not allowed."
+                  "message": "Method \"POST\" not allowed."
 
-  manage_users/self_update_admin_profile/33gc53c2-d272-4d7b-906f-34d1c86cf4ad/:
+  manage_users/self_update_admin_profile/6e49143b-0daf-4e9c-bc84-cb515110dd37/:
     get:
       tags:
         - Admin Users Manage
-      summary: Profile Image Upload Admin User
+      summary: Get Admin user updated details
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
+          description: Authorization Token
       responses:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type: object
+                example:
+                  "id": 2
+                  "user_auth": 
+                    "id": 4
+                    "email": "hajera+5@gleecus.com"
+                    "role_name": "Admin"
+                    "status": "active"
+                    "uuid": "0181d85c-3506-468b-b94b-90413689beb3"
+                    "user_type": "Administrator"
+                    "username": "HajeraAdmin"
+                    "is_active": true
+                  "uuid": "6e49143b-0daf-4e9c-bc84-cb515110dd37"
+                  "username": "HajeraAdmin"
+                  "first_name": null
+                  "last_name": null
+                  "role_name": "Admin"
+                  "profile": null
+                  "phone_number": null
+                  "created_at": "2024-10-10T06:23:39.256895Z"
+                  "updated_at": "2024-10-10T06:23:39.256895Z"
+                  "created_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                  "updated_by": "d397a43b-be59-44bb-9d33-e0bb81c8592e"
+                  "user": 4
+        
+        '401':
+            description: Not Authenticated
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Authentication credentials were not provided."
+
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
 
   manage_users/admin_profile_upload/:
     post:
       tags:
         - Admin Users Manage
-      summary: Profile Image Upload Admin User
+      summary: Admin user profile image upload 
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
+          description : Authorization Token
+        - name: admin_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of admin user<br>whose profile is to<br>be updated
+        - name: admin_profile
+          in: body
+          schema:
+            type: file
+          description: Upload profile image
+
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+          
+            schema:
+              type: object
+              example:
+                admin_uid: 659a7ec6-9a1f-40c2-8d22-65b25da31797
+                admin-profile:
+                  type: file
+                  format: binary
+                  
+            example:
+              admin_uid: 659a7ec6-9a1f-40c2-8d22-65b25da31797
+              admin-profile: [postman-cloud:///1ef910fa-29be-4f40-9be7-b600c8db1384"]
       responses:
         '200':
           description: Successful response

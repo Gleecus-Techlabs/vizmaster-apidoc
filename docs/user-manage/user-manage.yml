@@ -98,8 +98,140 @@ paths:
                   "updated_by_group": "Administrator"
                   "user": 43
                   "company": 2
-              
 
+  manage_users/user_update_by_admin/:
+    put:
+      tags:
+        - User Manage
+      summary: Admin User Update By SuperAdmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                admin_uid: d397a43b-be59-44bb-9d33-e0bb81c8592e
+                email: hajera+1@gleecus.com
+                first_name: Hajera
+                last_name: Nk
+                role_name: DataAnalyst
+                company_uid: 16ab928a-dfbc-41b5-97c2-b52b7d849b8a
+                username: Hajera1
+                company_user_uid: 33cc53c2-d272-4d7b-906f-34d1c86cf4ad
+                status: active
+                user_type: Application
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Authorization Token
+        - name: email
+          in: body
+          schema:
+            type: string
+          description: User Email address
+        - name: first_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User First name
+        - name: last_name
+          in: body
+          schema:
+            type: string
+            nullable: true
+          description: User Last name
+        - name: role_name
+          in: body
+          schema:
+            type: string
+          description: User role in company <br> [Eg:- Data Analyst]
+        - name: username
+          in: body
+          schema:
+            type: string
+          description: Username
+        - name: status
+          in: body
+          schema:
+            type: string
+          description: User status <br> active/inactive
+        - name: company_user_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of Company <br> user whose data <br> should be updated
+        - name: company_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of User company
+        - name: admin_uid
+          in: body
+          schema:
+            type: string
+          description: UUID of admin <br> performing the <br> update
+        - name: user_type
+          in: body
+          schema:
+            type: string
+          description: Type of user <br>[Application]<br>[Administrator]
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  message: "User details updated."
+       
+        '400':
+          description: Wrong credentials
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  message: "User with given updated_by-cfeb3f7f-0a57-42e2-9340-c028cd151652 doesnot exists!"
+
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."    
 
   manage_users/self_update_profile/{user_uid}/:
     put:
