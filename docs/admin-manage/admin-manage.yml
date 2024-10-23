@@ -88,7 +88,57 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example:
+                  message: "User details updated."
+       
+        '400':
+          description: Wrong credentials
+          content:
+            application/json: 
+              schema:
+                type: object
+                example:
+                  message: "User with given updated_by-cfeb3f7f-0a57-42e2-9340-c028cd151652 doesnot exists!"
+
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."
+
 
   users/admin_user/:
     get:
@@ -175,21 +225,131 @@ paths:
                 username: Hajera7
                 profile: >-
                   https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg
-      security:
-        - noauthAuth: []
+
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+          description: Authorization Token  
+
+        - name: email
+          in: body
+          schema:
+            type: string
+          description: User Email address  
+
+        - name: first_name
+          in: body
+          schema:
+            type: string
+            nullable: true  
+          description: User First name  
+
+
+        - name: last_name
+          in: body
+          schema:
+            type: string  
+            nullable: true
+          description: User Last name    
+
+        - name: username
+          in: body
+          schema:
+            type: string  
+            nullable: true  
+          description: Username  
+
+        - name: profile
+          in: body
+          schema:
+            type: string 
+            nullable: true   
+          description: Profile Image URL  
+          
       responses:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Admin Profile Updated Successfully!"
+                  "data": 
+                    "id": 1
+                    "user_auth": 
+                        "id": 13
+                        "email": "bhanuinter+15@gmail.com"
+                        "role_name": "SuperAdmin"
+                        "status": "active"
+                        "uuid": "cfeb3f7f-0a57-42e2-9340-c028cd151652"
+                        "user_type": "Administrator"
+                        "username": "gleecus15"
+                        "is_active": true
+            
+                        "uuid": "6b4a8cdf-c202-4d98-96f9-a6546810b8bf"
+                        "username": "gleecus15"
+                        "first_name": "Hajera"
+                        "last_name": "Nkhan"
+                        "role_name": "SuperAdmin"
+                        "profile": "https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg"
+                        "phone_number": null,
+                        "created_at": "2024-10-18T08:25:03.550831Z"
+                        "updated_at": "2024-10-18T08:25:03.550841Z"
+                        "created_by": "cfeb3f7f-0a57-42e2-9340-c028cd151652"
+                        "updated_by": "cfeb3f7f-0a57-42e2-9340-c028cd151652"
+                        "user": 13 
+
+        '400':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    data:
+                      "detail": 
+                          "message": "Fields should not be empty"
+
+        '401':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    "message": "Resource not found"
+                    data:
+                      "detail": "Authentication credentials were not provided."
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": 
+                    "detail": "Method \"POST\" not allowed."
 
   manage_users/self_update_admin_profile/33gc53c2-d272-4d7b-906f-34d1c86cf4ad/:
     get:

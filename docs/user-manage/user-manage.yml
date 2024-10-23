@@ -33,7 +33,12 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type:object:
+                example: {}
+                 
+
     get:
       tags:
         - User Manage
@@ -50,7 +55,51 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "id": 3
+                  "company_details": 
+                    "id": 2
+                    "status": "active"
+                    "uuid": "d6e4cb91-e58a-4e75-86e8-1e98659fcac1"
+                    "name": "Glcs-12"
+                    "address": "abcd roadno-123"
+                    "phone_number": ""
+                    "logo": ""
+                    "slug": "glcs-12"
+                    "created_by": "435ea0ee-1e8f-4031-a5e3-948923ec7003"
+                    "updated_by": "435ea0ee-1e8f-4031-a5e3-948923ec7003"
+                    "created_at": "2024-10-18T11:57:18.377560Z"
+                    "updated_at": "2024-10-18T11:57:18.377580Z"
+                  "user_auth": 
+                    "id": 43
+                    "email": "bhanu+78@gleecus.com"
+                    "role_name": "DataAnalyst"
+                    "status": "active"
+                    "uuid": "7b5ae106-b67e-49d9-b288-ecd0e76f88dd"
+                    "user_type": "Application"
+                    "username": "bhanu78"
+                    "is_active": true
+                
+                  "uuid": "7d6c976a-5a4d-4b5a-a79c-a6eed861a744"
+                  "username": "bhanu78"
+                  "first_name": ""
+                  "last_name": ""
+                  "role_name": "DataAnalyst"
+                  "profile": ""
+                  "phone_number": null
+                  "created_at": "2024-10-22T13:23:31.237002Z"
+                  "updated_at": "2024-10-22T13:23:31.237009Z"
+                  "created_by": "2a633329-f840-4039-9887-38e45c87a054"
+                  "updated_by": "2a633329-f840-4039-9887-38e45c87a054"
+                  "created_by_group": "Administrator"
+                  "updated_by_group": "Administrator"
+                  "user": 43
+                  "company": 2
+              
+
 
   manage_users/self_update_profile/{user_uid}/:
     put:
@@ -136,7 +185,11 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example: {}
+  
   
   manage_users/users_delete_by_admins/:
     post:
