@@ -18,12 +18,12 @@ nav:
     - Onboard : admin-register/admin-register.md
     - Management : admin-manage/admin-manage.md
   - Company Management:
-    - CRUD: company/company.md
-    - User Onboard: company-register/company-register.md
+    - Company CRUD: company/company.md
+    - User Onboarding: company-register/company-register.md
   - User Management:
     - Authentication : user/user.md
-    - Users Manage: user-manage/user-manage.md
-  - Password Management: password/password.md
+    - Password Management: password/password.md
+    - User Managing: user-manage/user-manage.md
   - DB Connection : db-connect/db-connect.md
   - OAuth : oauth/oauth.md
   # - example: example/example.md

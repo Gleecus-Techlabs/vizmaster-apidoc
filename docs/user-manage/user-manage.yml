@@ -5,38 +5,38 @@ info:
 
 paths:
   users/company_user/:
-    put:
-      tags:
-        - User Manage
-      summary: User Create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                email: hajera+5@gleecus.com
-                password: Gleecus123
-                role_name: DataEngineers
-                company: '1'
-                is_data_engineers: true
-                is_data_analysts: false
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type:object:
-                example: {}
+    # put:
+    #   tags:
+    #     - User Manage
+    #   summary: User Create
+    #   requestBody:
+    #     content:
+    #       application/json:
+    #         schema:
+    #           type: object
+    #           example:
+    #             email: hajera+5@gleecus.com
+    #             password: Gleecus123
+    #             role_name: DataEngineers
+    #             company: '1'
+    #             is_data_engineers: true
+    #             is_data_analysts: false
+    #   parameters:
+    #     - name: Authorization
+    #       in: header
+    #       schema:
+    #         type: string
+    #       example: >-
+    #         Bearer
+    #         eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0ODMwMzA2LCJpYXQiOjE3MjQ4MjY3MDYsImp0aSI6ImQ2MTI5ZTJkMjM5NDQwNWU5YmQxZGRkY2MzYWRlYzY5IiwidXNlcl9pZCI6Mn0.bSWi4bcpiLc0hC1A2Tq2iXSWyH6G6mK9Uys1BgWjCoU
+    #   responses:
+    #     '200':
+    #       description: Successful response
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type:object:
+    #             example: {}
                  
 
     get:
@@ -98,6 +98,32 @@ paths:
                   "updated_by_group": "Administrator"
                   "user": 43
                   "company": 2
+        '401':
+          description: 401 Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: 403 Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: 404Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"             
 
   manage_users/user_update_by_admin/:
     put:
@@ -265,7 +291,93 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "User Profile Updated Successfully!"
+                  "data": 
+                    "id": 5
+                    "company_details": 
+                      "id": 4
+                      "status": "active"
+                      "uuid": "ecbd2132-b3fc-4b3b-a595-f93e59057375"
+                      "name": "Gleecus Tech 3"
+                      "address": null
+                      "phone_number": null
+                      "logo": null
+                      "slug": "gleecus-tech-3"
+                      "created_by": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "updated_by": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "created_at": "2024-10-23T13:23:38.027285Z"
+                      "updated_at": "2024-10-23T13:23:38.027337Z"
+        
+                    "user_auth": 
+                      "id": 45
+                      "email": "bhanu+80@gleecus.com"
+                      "role_name": "AppSuperAdmin"
+                      "status": "active"
+                      "uuid": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "user_type": "Application"
+                      "username": "bhanu80"
+                      "is_active": true
+        
+                    "uuid": "0c6cb232-adab-49b1-a253-a522c27024d7"
+                    "username": "bhanu80"
+                    "first_name": "bhanu"
+                    "last_name": "prakash"
+                    "role_name": "AppSuperAdmin"
+                    "profile": "My logo"
+                    "phone_number": null
+                    "created_at": "2024-10-23T13:23:38.041022Z"
+                    "updated_at": "2024-10-23T13:23:38.041029Z"
+                    "created_by": "2a633329-f840-4039-9887-38e45c87a054"
+                    "updated_by": "2a633329-f840-4039-9887-38e45c87a054"
+                    "created_by_group": "Administrator"
+                    "updated_by_group": "Administrator"
+                    "user": 45
+                    "company": 4
+        '400':
+          description: 400 Bad Request
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Given Company Doesnot exists."
+        '401':
+          description: 401 Unauthorized
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Authentication credentials were not provided."
+        '403':
+          description: 403 Forbidden
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "You do not have permission to perform this action."
+        '404':
+          description: 404Resource not found
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Resource not found"            
+        '405':
+          description: 405Method Not Allowed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"POST\" not allowed."
+
     get:
       tags:
         - User Manage
@@ -284,7 +396,77 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example:               
+                  "id": 5
+                  "company_details": 
+                      "id": 4
+                      "status": "active"
+                      "uuid": "ecbd2132-b3fc-4b3b-a595-f93e59057375"
+                      "name": "Gleecus Tech 3"
+                      "address": null
+                      "phone_number": null
+                      "logo": null
+                      "slug": "gleecus-tech-3"
+                      "created_by": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "updated_by": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "created_at": "2024-10-23T13:23:38.027285Z"
+                      "updated_at": "2024-10-23T13:23:38.027337Z"
+                  
+                  "user_auth": 
+                      "id": 45,
+                      "email": "bhanu+80@gleecus.com"
+                      "role_name": "AppSuperAdmin"
+                      "status": "active"
+                      "uuid": "bc8e471e-927f-400a-b770-995be8de1c36"
+                      "user_type": "Application"
+                      "username": "bhanu80"
+                      "is_active": true
+                  
+                  "uuid": "0c6cb232-adab-49b1-a253-a522c27024d7"
+                  "username": "bhanu80"
+                  "first_name": "bhanu"
+                  "last_name": "prakash"
+                  "role_name": "AppSuperAdmin"
+                  "profile": "My logo"
+                  "phone_number": null
+                  "created_at": "2024-10-23T13:23:38.041022Z"
+                  "updated_at": "2024-10-23T13:23:38.041029Z"
+                  "created_by": "2a633329-f840-4039-9887-38e45c87a054"
+                  "updated_by": "2a633329-f840-4039-9887-38e45c87a054"
+                  "created_by_group": "Administrator"
+                  "updated_by_group": "Administrator"
+                  "user": 45
+                  "company": 4
+
+        '401':
+          description: 401 Unauthorized
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Authentication credentials were not provided."
+        '403':
+          description: 403  Forbidden
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: 404Resource not found
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Resource not found"
+
 
   manage_users/user_profile_upload/:
     post:
@@ -342,7 +524,57 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "User account deleted."
+
+        '400':
+          description: 400 Bad Request
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Error in fetching user details- User matching query does not exist."
+
+        '401':
+          description: 401 Unauthorized
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Authentication credentials were not provided."
+
+        '403':
+          description: 403 Forbidden
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: 404Resource not found
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Resource not found"          
+       
+        '405':
+          description: 405 Method Not Allowed  
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Method \"PUT\" not allowed."
+
 
   manage_users/update_user_status_by_admins/:
     post:
@@ -365,7 +597,55 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "User status updated."
+
+        '400':
+          description:  400 Bad Request
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "User not found - ['“7d6c976a-5a4d-4b5a-a79c-a6eed861a7444” is not a valid UUID.']"
+
+        '401':
+          description:  401 Unauthorized 
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Authentication credentials were not provided."
+        '403':
+          description:  403 Forbidden 
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "You do not have permission to perform this action."
+
+        '404':
+          description: 404Resource not found
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Resource not found"
+
+        '405':
+          description: 405 Method Not Allowed 
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Method \"PUT\" not allowed."
             
   manage_users/email_test/:
     post:
@@ -383,6 +663,28 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Email sent successfully."
+
+        '404':
+          description: 404Resource not found
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Resource not found"       
+
+        '405':
+          description: 405 Method Not Allowed
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  "message": "Method \"PUT\" not allowed."
 
   
