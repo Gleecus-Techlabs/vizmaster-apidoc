@@ -8,7 +8,7 @@ paths:
     post:
       tags:
         - Admin Onboard
-      summary: Super-Admin user creation/registration
+      summary: Super Admin user creation/registration
       requestBody:
         content:
           application/json:

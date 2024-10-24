@@ -143,7 +143,7 @@ paths:
     get:
       tags:
         - Company CRUD
-      summary: Get all companies from database
+      summary: Retrieve all companies from the database
       parameters:
         - name: Authorization
           in: header
@@ -202,8 +202,13 @@ paths:
     get:
       tags:
         - Company CRUD
-      summary: Get specific company details 
+      summary: Retrieve details of a specific company by `company_id`
       parameters:
+        - name: company_id
+          in: URL
+          schema:
+            type: string
+          description: Company Id for<br>fetching details
         - name: Authorization
           in: header
           schema:
@@ -260,8 +265,14 @@ paths:
     put:
       tags:
         - Company CRUD
-      summary: Get all companies from database
+      summary: Update details of a specific company using `company_id`
       parameters:
+        - name: company_id
+          in: URL
+          schema:
+            type: string
+          description: Company Id for<br>updating details
+
         - name: Authorization
           in: header
           schema:
@@ -318,8 +329,13 @@ paths:
     delete:
       tags:
         - Company CRUD
-      summary: Get all companies from database
+      summary: Delete a specific company by `company_id`
       parameters:
+        - name: company_id
+          in: URL
+          schema:
+            type: string
+          description: Company Id used<br>for deletion
         - name: Authorization
           in: header
           schema:
