@@ -10,7 +10,7 @@ paths:
     post:
       tags: 
         - DB Connection
-      summary: Test DB connection
+      summary: Test the database connection
       parameters:
         - name: Authorization
           in: header
@@ -150,7 +150,7 @@ paths:
     post:
       tags:
         - DB Connection
-      summary: Get/Fetch Data From S3-Datasource
+      summary: Establish a connection to the source database
       requestBody:
         content:
           application/json:
@@ -170,7 +170,7 @@ paths:
     post:
       tags:
         - DB Connection
-      summary: ConnectOrDisconnect Data From Datasource
+      summary: Fetch records from the source database
       requestBody:
         content:
           application/json:
@@ -190,7 +190,7 @@ paths:
     post:
       tags:
         - DB Connection
-      summary: ConnectOrDisconnect Data From Datasource
+      summary: Connect or disconnect from the source databasee
       requestBody:
         content:
           application/json:

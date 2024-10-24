@@ -42,7 +42,7 @@ paths:
     get:
       tags:
         - User Manage
-      summary: Get All Company User
+      summary: Retrieve all company users
       parameters:
         - name: Authorization
           in: header
@@ -129,7 +129,7 @@ paths:
     put:
       tags:
         - User Manage
-      summary: Admin User Update By SuperAdmin
+      summary: Update user details by admin
       requestBody:
         content:
           application/json:
@@ -263,7 +263,7 @@ paths:
     put:
       tags:
         - User Manage
-      summary: Company User Self Update
+      summary: Update own profile with `user_uid`
       requestBody:
         content:
           application/json:
@@ -277,16 +277,17 @@ paths:
                 username: Hajera7
                 profile: >-
                   https://vizmaster-user-bucket.s3.amazonaws.com/users/33cc53c2-d272-4d7b-906f-34d1c86cf4ad/akrales_190424_3301_0426.jpg
-      security:
-        - noauthAuth: []
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+          description: Authorization Token
+        - name: user_uid
+          in: URL
+          schema:
+            type: string
+          description: User UUID for profile<br>update
       responses:
         '200':
           description: Successful response
@@ -381,17 +382,19 @@ paths:
     get:
       tags:
         - User Manage
-      summary: Admin User Self GET
-      security:
-        - noauthAuth: []
+      summary: Retrieve own profile details using `user_uid`
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NTIxNDM5LCJpYXQiOjE3MjU1MTc4MzksImp0aSI6ImQ4MDI4ZWUwMzIyYjQxZGVhZGMwZjhkYjA3ZmU0M2YwIiwidXNlcl9pZCI6MTR9._3kYdsDKRvoW7u4_uJOFMkGGhd4YANc6YTjed5aknoo
+          description: Authorization Token
+        - name: user_uid
+          in: URL
+          schema:
+            type: string
+          description: User UUID for<br>fetching details
+
       responses:
         '200':
           description: Successful response
@@ -472,7 +475,7 @@ paths:
     post:
       tags:
         - User Manage
-      summary: Profile Image Upload Company User
+      summary: Company user profile image upload
       requestBody:
         content:
           multipart/form-data:
@@ -485,16 +488,11 @@ paths:
                 user_profile:
                   type: string
                   format: binary
-      security:
-        - noauthAuth: []
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: >-
-            Bearer
-            eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1ODg4NjM0LCJpYXQiOjE3MjU4ODUwMzQsImp0aSI6Ijc5ODU3YWI4ZjhjMzRhMWU5YzJiMWFiNmE1YjZlZThmIiwidXNlcl9pZCI6MjF9.SUkLVxsb8UGOYamY81oMxDENrOb3tWGGlQ6oazRCe4I
       responses:
         '200':
           description: Successful response
@@ -509,7 +507,7 @@ paths:
     post:
       tags:
         - User Manage
-      summary: Delete Company Users By Both Admins
+      summary: Delete company users by admin
       requestBody:
         content:
           application/json:
@@ -580,7 +578,7 @@ paths:
     post:
       tags:
         - User Manage
-      summary: Status Update of Company Users By Both Admins
+      summary: Change status of specified company users by admins
       requestBody:
         content:
           application/json:
