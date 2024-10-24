@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+  description: |
+   Welcome to the API documentation for Vizmaster AI. This documentation provides comprehensive details about various endpoints available in the application, including authentication mechanisms, data formats, and error handling protocols. You will also find example requests and responses for easier integration with the API.
+
+   This document is designed to help developers understand how to interact with the system, and outlines key concepts such as authentication schemes, supported HTTP methods, and response codes. For any additional support or clarification, please send out an [email](mailto:zilla.deepak@gleecus.com)
+
+   ## URL Schema
+   ```
+   https://{{server_url}}/api/{{version}}/endpoint
+   ```
+
+   ## Server URL
+    | Name          | URL                                           |
+    |---------------|------------------------------------------|
+    | Local Host     | ```localhost:8000```       |
+    | Development URL|```vizmaster-api.gleecustechlabs.com```|
+    | Production URL |   Yet to be done   |
+
+   ## Version
+    |     Name     |  Version Code                              |
+    |---------------|------------------------------------------|
+    | Version 1     |   ```v1```      |
+    
+
+# components:
+#   securitySchemes:
+#     noauthAuth:
+#       type: http
+#       scheme: noauth
+#       description: No authentication requ<br>ired for access
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+# tags:
+#   # - name: Oauth2 Grant Token
+#   - name: Admin Onboard
+#     description: Admin Register
+#   - name: Company Register
+#   - name: Users
+#   - name: Company
+#   - name: Users Manage
+#   - name: Admin Users Manage
+#   - name: DB Connection
+
+paths:
+  /admin/:
+    get:
+      tags:
+        - Admin
+      summary: Django Admin Page
+      description: Retrieves the Django admin page.
+      responses:
+        '200':
+          description: Successful response, returns the HTML content for the admin page.
+          content:
+            text/html:
+              schema:
+                type: string
+                example: | 
+                  <!DOCTYPE html>
+                  <html lang="en-us">
+                    <head>
+                      <title>Log in | Django site admin</title>
+                    </head>
+                    <body>
+                      <form>
+                        <label for="id_username">Username:</label>
+                        <input type="text" name="username" required id="id_username">
+                        <label for="id_password">Password:</label>
+                        <input type="password" name="password" required id="id_password">
+                        <button>Login</button>
+                      </form>
+                    </body>
+                  </html>
+        
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+

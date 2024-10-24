@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: Vizmaster AI
+  version: 1.0.0
+  description: |
+    <p style="color: red;"> 🚩 This Section APIs are not finalized and may not be fully functional.</p>
+
+paths:
+  dbs/db_test_connection/:
+    post:
+      tags: 
+        - DB Connection
+      summary: Test the database connection
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Authorization Token
+        - name: connector_json
+          in: body
+          schema:
+            type: JSON
+          description: consists of <br> connection details
+        - name: database_type
+          in: body
+          schema:
+            type: string
+          description: Type of Database<br>[MySQL, PostgreSQL]
+        - name: alias_name
+          in: body
+          schema:
+            type: string
+          description: Database alias name
+        - name: company_id
+          in: body
+          schema:
+            type: integer
+          description: Company ID 
+        - name: company_user_id
+          in: body
+          schema:
+            type: integer
+          description: Company user ID<br>whose is testing<br>the connection
+        - name: hostname_ip
+          in: connector_json
+          schema:
+            type: string
+          description: Host IP <br> [localhost]
+        - name: port
+          in: connector_json
+          schema:
+            type: string
+          description: Port Number <br>[5432,5433]
+        - name: database_name
+          in: connector_json
+          schema:
+            type: string
+          description: Database name
+        - name: db_username
+          in: connector_json
+          schema:
+            type: string
+          description: Database user
+        - name: db_password
+          in: connector_json
+          schema:
+            type: string
+          description: Database password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                "connector_json": 
+                  "hostname_ip": "localhost"
+                  "port": "5432"
+                  "database_name": "vizdb"
+                  "db_username": "postgres"
+                  "db_password": "8688"
+                "database_type": "postgresql"
+                "alias_name": "VizzTestDb"
+                "company_id": 1
+                "company_user_id": 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: "Test DB connection was successful!"
+                  db_connection_status: "Success"
+        
+        '400':
+          description: Bad Request
+          content:
+          
+            application/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Check database type, It's not in our supported databases"
+
+            text/json: 
+              schema:
+                type: object
+                example:
+                  "message": "Error in creating Test Dbconnection" 
+                  "Error": "Something went wrong"
+
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Authentication credentials were not provided."
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "You do not have permission to perform this action."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Resource not found"
+
+        '405':
+          description: Method not allwoed
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  "message": "Method \"GET\" not allowed."
+  
+
+  dbs/sourcedb_connector/:
+    post:
+      tags:
+        - DB Connection
+      summary: Establish a connection to the source database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                database_type: s3
+                company_id: 1
+                sql_query: what are the blood types in healthcare data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+
+  dbs/fetch_data_from_sourcedb/:
+    post:
+      tags:
+        - DB Connection
+      summary: Fetch records from the source database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                database_type: postgresql
+                company_id: 1
+                connection: disconnect
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+
+  dbs/connect_disconnect_sourcedb/:
+    post:
+      tags:
+        - DB Connection
+      summary: Connect or disconnect from the source databasee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                database_type: postgresql
+                company_id: 1
+                connection: disconnect
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
